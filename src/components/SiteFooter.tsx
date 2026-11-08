@@ -44,7 +44,7 @@ export function SiteFooter() {
       <div className="border-t border-[#111111]">
         <div className="mx-auto max-w-5xl px-4 py-3 flex flex-col sm:flex-row items-center justify-between gap-2">
           <p className="text-xs text-gray-700">© 2026 WatchSnap. All rights reserved.</p>
-          <p className="text-xs text-gray-700">Powered by Claude AI · Payments by Paddle</p>
+          <p className="text-xs text-gray-700">Powered by Claude AI · Payments by LemonSqueezy</p>
         </div>
       </div>
     </footer>

@@ -53,7 +53,7 @@ export function Navbar() {
     // Clear main idle timer
     if (tapTimerRef.current) clearTimeout(tapTimerRef.current);
 
-    if (count >= 7) {
+    if (count >= 7 && process.env.NODE_ENV === "development") {
       // 7 taps → open dev menu
       tapCountRef.current = 0;
       setTapFeedback(0);
@@ -192,8 +192,10 @@ export function Navbar() {
         onClose={() => setShowIOSModal(false)}
       />
 
-      {/* Secret dev menu — unlocked by tapping logo 7× */}
-      <DevMenu open={showDevMenu} onClose={() => setShowDevMenu(false)} />
+      {/* Dev menu — development builds only, opened by tapping the logo 7× */}
+      {process.env.NODE_ENV === "development" && (
+        <DevMenu open={showDevMenu} onClose={() => setShowDevMenu(false)} />
+      )}
     </>
   );
 }

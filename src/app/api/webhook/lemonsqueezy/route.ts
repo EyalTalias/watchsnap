@@ -109,7 +109,7 @@ async function upsertFromSubscription(
   const status   = mapStatus(attrs.status);
 
   const update = {
-    // Reuse the paddle_* columns for LS IDs (no schema migration needed)
+    // LemonSqueezy IDs are stored in the legacy paddle_* columns (renaming them needs a DB migration)
     paddle_customer_id:     String(attrs.customer_id),
     paddle_subscription_id: subId,
     subscription_status:    status,

@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { Camera, TrendingUp, Shield, CreditCard, Crown, Check } from "lucide-react";
+import { getApiUrl } from "@/lib/apiUrl";
 
 export const ONBOARDING_KEY = "watchsnap_onboarded";
 export const PRO_KEY = "watchsnap_pro";
@@ -31,11 +32,18 @@ export function Onboarding({ onDone }: OnboardingProps) {
     setLoading(plan);
     setError("");
     try {
-      const { openPaddleCheckout } = await import("@/lib/paddle");
       localStorage.setItem(ONBOARDING_KEY, "1");
-      await openPaddleCheckout(plan);
+      // LemonSqueezy hosted checkout (same flow as PaywallModal)
+      const res = await fetch(getApiUrl("/api/checkout"), {
+        method:  "POST",
+        headers: { "Content-Type": "application/json" },
+        body:    JSON.stringify({ plan }),
+      });
+      if (!res.ok) throw new Error("checkout_failed");
+      const { url } = await res.json();
+      window.location.href = url;
     } catch (err) {
-      // If Paddle isn't configured yet, fall back to full paywall page
+      // Checkout unavailable - fall back to the full paywall page
       localStorage.setItem(ONBOARDING_KEY, "1");
       window.location.href = "/paywall";
       setError(err instanceof Error ? err.message : "Connection error. Please try again.");

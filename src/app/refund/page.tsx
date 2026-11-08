@@ -63,7 +63,7 @@ export default function RefundPage() {
               Monthly subscriptions include a <strong>7-day free trial</strong>. During this period:
             </p>
             <ul>
-              <li>Your payment method is saved securely by Paddle but <strong>not charged</strong>.</li>
+              <li>Your payment method is saved securely by LemonSqueezy but <strong>not charged</strong>.</li>
               <li>You have full access to all Pro features.</li>
               <li>You may cancel at any time before the trial ends with <strong>zero charge</strong> — no questions asked.</li>
             </ul>
@@ -101,7 +101,7 @@ export default function RefundPage() {
             <ol className="list-decimal pl-5 space-y-2">
               <li>Email us at <a href="mailto:watchsnapapp@gmail.com" className="text-[#C9A84C] hover:underline">watchsnapapp@gmail.com</a></li>
               <li>Include the email address associated with your subscription</li>
-              <li>Include your Paddle order ID (found in your receipt email) if available</li>
+              <li>Include your LemonSqueezy order number (found in your receipt email) if available</li>
               <li>Briefly describe your reason (optional but appreciated)</li>
             </ol>
             <p>

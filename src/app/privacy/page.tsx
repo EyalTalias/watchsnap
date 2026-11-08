@@ -44,8 +44,8 @@ export default function PrivacyPage() {
             <p>When you use WatchSnap we may collect:</p>
             <ul>
               <li><strong>Images:</strong> Photos of watches you upload or capture through the app for AI identification.</li>
-              <li><strong>Email address:</strong> If you create an account or subscribe to a paid plan via Paddle Billing.</li>
-              <li><strong>Payment information:</strong> Processed entirely by Paddle (our Merchant of Record). We never see or store your card details.</li>
+              <li><strong>Email address:</strong> If you create an account or subscribe to a paid plan via LemonSqueezy.</li>
+              <li><strong>Payment information:</strong> Processed entirely by LemonSqueezy (our Merchant of Record). We never see or store your card details.</li>
             </ul>
 
             <SubHeading>2.2 Information Collected Automatically</SubHeading>
@@ -68,9 +68,9 @@ export default function PrivacyPage() {
             <p>We use collected information to:</p>
             <ul>
               <li>Provide, operate, and improve the WatchSnap Service</li>
-              <li>Process subscription payments through Paddle</li>
+              <li>Process subscription payments through LemonSqueezy</li>
               <li>Track your free-scan usage (stored locally, not on our servers)</li>
-              <li>Send transactional emails related to your subscription (via Paddle)</li>
+              <li>Send transactional emails related to your subscription (via LemonSqueezy)</li>
               <li>Monitor and prevent fraudulent or abusive use of the Service</li>
               <li>Comply with legal obligations</li>
             </ul>
@@ -93,7 +93,7 @@ export default function PrivacyPage() {
             <p>WatchSnap relies on the following third-party processors:</p>
             <ul>
               <li><strong>Anthropic Claude API</strong> — AI image analysis</li>
-              <li><strong>Paddle</strong> — Payment processing, subscription management, and tax compliance (Merchant of Record)</li>
+              <li><strong>LemonSqueezy</strong> — Payment processing, subscription management, and tax compliance (Merchant of Record)</li>
               <li><strong>Supabase</strong> — Database and authentication infrastructure</li>
               <li><strong>Vercel</strong> — Web hosting and content delivery</li>
             </ul>

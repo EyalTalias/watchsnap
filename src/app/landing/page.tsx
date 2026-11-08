@@ -589,7 +589,7 @@ export default function LandingPage() {
           <div className="mt-10 flex items-center justify-center gap-6 flex-wrap">
             {[
               { icon: "🔒", label: "SSL Encrypted" },
-              { icon: "🛡️", label: "Paddle Secured" },
+              { icon: "🛡️", label: "Secure Checkout" },
               { icon: "↩️", label: "30-Day Refund" },
               { icon: "🤖", label: "Claude AI" },
               { icon: "📱", label: "Works Offline" },

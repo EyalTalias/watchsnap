@@ -343,7 +343,7 @@ export default function HomePage() {
               },
               {
                 q: "Can I cancel anytime?",
-                a: "Absolutely. Cancel your subscription at any time from your Paddle account portal. You keep access until the end of your billing period. Annual subscribers get a 30-day money-back guarantee, no questions asked.",
+                a: "Absolutely. Cancel your subscription at any time using the Manage subscription link in your LemonSqueezy receipt email. You keep access until the end of your billing period. Annual subscribers get a 30-day money-back guarantee, no questions asked.",
               },
             ].map(({ q, a }, i) => (
               <details key={i} className="group rounded-2xl border border-[#1E1E1E] bg-[#111111] overflow-hidden">

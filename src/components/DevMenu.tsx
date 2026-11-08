@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useRef, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { X, Terminal, RotateCcw, Crown, ShieldOff } from "lucide-react";
 
 interface DevMenuProps {
@@ -8,43 +8,21 @@ interface DevMenuProps {
   onClose: () => void;
 }
 
-const DEV_PASSWORD = "***REMOVED***";
-
-type Screen = "password" | "menu";
-
+/**
+ * Developer tools. Only rendered in development builds (see Navbar), so it
+ * needs no password and never ships to production users.
+ */
 export function DevMenu({ open, onClose }: DevMenuProps) {
-  const [screen, setScreen]     = useState<Screen>("password");
-  const [input, setInput]       = useState("");
-  const [pwError, setPwError]   = useState(false);
   const [toast, setToast]       = useState("");
-  const inputRef                = useRef<HTMLInputElement>(null);
 
   // Reset state every time the menu opens
   useEffect(() => {
-    if (open) {
-      setScreen("password");
-      setInput("");
-      setPwError(false);
-      setToast("");
-      setTimeout(() => inputRef.current?.focus(), 80);
-    }
+    if (open) setToast("");
   }, [open]);
 
   function showToast(msg: string) {
     setToast(msg);
     setTimeout(() => setToast(""), 2200);
-  }
-
-  function handlePasswordSubmit(e: React.FormEvent) {
-    e.preventDefault();
-    if (input === DEV_PASSWORD) {
-      setPwError(false);
-      setScreen("menu");
-    } else {
-      setPwError(true);
-      setInput("");
-      setTimeout(() => setPwError(false), 1200);
-    }
   }
 
   function resetScans() {
@@ -91,42 +69,8 @@ export function DevMenu({ open, onClose }: DevMenuProps) {
           </button>
         </div>
 
-        {/* ── Password screen ── */}
-        {screen === "password" && (
-          <form onSubmit={handlePasswordSubmit} className="p-5 space-y-4">
-            <p className="text-xs text-gray-500 text-center">
-              Enter developer password to continue
-            </p>
-            <input
-              ref={inputRef}
-              type="password"
-              value={input}
-              onChange={(e) => setInput(e.target.value)}
-              placeholder="Password"
-              className={`w-full rounded-xl border px-4 py-3 text-sm bg-[#0A0A0A] text-white outline-none transition-all placeholder:text-gray-600 ${
-                pwError
-                  ? "border-red-500/70 animate-[shake_0.3s_ease-in-out]"
-                  : "border-[#2A2A2A] focus:border-[#C9A84C]/60"
-              }`}
-            />
-            {pwError && (
-              <p className="text-xs text-red-400 text-center -mt-1">
-                Wrong password
-              </p>
-            )}
-            <button
-              type="submit"
-              className="w-full rounded-xl py-3 text-sm font-black text-black transition-all active:scale-95"
-              style={{ background: "linear-gradient(135deg, #C9A84C, #A8882F)" }}
-            >
-              Unlock
-            </button>
-          </form>
-        )}
-
-        {/* ── Dev actions screen ── */}
-        {screen === "menu" && (
-          <div className="p-5 space-y-3">
+        {/* ── Dev actions ── */}
+        <div className="p-5 space-y-3">
             <p className="text-[11px] text-gray-600 text-center uppercase tracking-widest mb-4">
               Developer Tools
             </p>
@@ -176,7 +120,6 @@ export function DevMenu({ open, onClose }: DevMenuProps) {
               </div>
             </button>
           </div>
-        )}
 
         {/* Toast notification */}
         <div
