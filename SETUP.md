@@ -18,8 +18,13 @@ Copy `.env.local.example` to `.env.local` and fill in:
 | `ANTHROPIC_API_KEY` | console.anthropic.com → API Keys |
 | `NEXT_PUBLIC_SUPABASE_URL` | supabase.com → Project Settings → API |
 | `NEXT_PUBLIC_SUPABASE_ANON_KEY` | supabase.com → Project Settings → API |
-| `STRIPE_SECRET_KEY` | dashboard.stripe.com → Developers → API Keys |
-| `NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY` | dashboard.stripe.com → Developers → API Keys |
+| `SUPABASE_SERVICE_ROLE_KEY` | supabase.com → Project Settings → API (server only) |
+| `LEMONSQUEEZY_API_KEY` | app.lemonsqueezy.com → Settings → API |
+| `LEMONSQUEEZY_STORE_ID` | app.lemonsqueezy.com → Settings → Stores |
+| `LEMONSQUEEZY_WEBHOOK_SECRET` | app.lemonsqueezy.com → Settings → Webhooks |
+| `LEMONSQUEEZY_MONTHLY_VARIANT_ID` / `LEMONSQUEEZY_ANNUAL_VARIANT_ID` | Product variant IDs in LemonSqueezy |
+
+See `.env.local.example` for the full list.
 
 ## Supabase Setup
 
@@ -55,16 +60,11 @@ create policy "Users delete own scans"
   on scans for delete using (auth.uid() = user_id);
 ```
 
-## Stripe Setup
+## LemonSqueezy Setup
 
-1. Create two products in Stripe Dashboard:
-   - **WatchSnap Pro Monthly** → $9.99/month recurring
-   - **WatchSnap Pro Annual** → $59.99/year recurring
-2. Copy the Price IDs and add to `.env.local`:
-   ```
-   STRIPE_PRICE_MONTHLY=price_xxx
-   STRIPE_PRICE_ANNUAL=price_yyy
-   ```
+1. Create a **WatchSnap Pro** product in LemonSqueezy with a monthly and an annual variant.
+2. Copy the variant IDs into `LEMONSQUEEZY_MONTHLY_VARIANT_ID` / `LEMONSQUEEZY_ANNUAL_VARIANT_ID`.
+3. Add a webhook pointing to `https://<your-domain>/api/webhook/lemonsqueezy` and put its signing secret in `LEMONSQUEEZY_WEBHOOK_SECRET`.
 
 ## Pages
 
@@ -75,7 +75,9 @@ create policy "Users delete own scans"
 | `/paywall` | Subscription page |
 | `/history` | Past scans (premium) |
 | `/api/identify` | POST — Claude vision AI endpoint |
-| `/api/stripe/checkout` | POST — Create Stripe checkout session |
+| `/api/checkout` | POST — Create LemonSqueezy checkout URL |
+| `/api/webhook/lemonsqueezy` | POST — Subscription webhook → Supabase |
+| `/api/verify-subscription` | POST — Check Pro status |
 
 ## Free Scan Logic
 

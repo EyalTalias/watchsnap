@@ -1,0 +1,6 @@
+# Keep GitHub's language stats focused on the app source.
+# marketing/ holds static HTML ad mockups, not application code.
+marketing/** linguist-documentation
+# Capacitor-generated native scaffolding
+android/gradlew* linguist-generated
+ios/App/CapApp-SPM/** linguist-generated
