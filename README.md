@@ -55,7 +55,7 @@ The Anthropic key, Supabase service-role key and LemonSqueezy secrets are only r
 **Requirements:** Node.js 18+, an Anthropic API key, a Supabase project, and (for payments) a LemonSqueezy store.
 
 ```bash
-git clone https://github.com/EyaTtalias/watchsnap.git
+git clone https://github.com/EyalTalias/watchsnap.git
 cd watchsnap
 npm install
 cp .env.local.example .env.local   # then fill in your own values
